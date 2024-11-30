@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { View, Text, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -10,10 +11,10 @@ import CartScreen from '../screens/CartScreen';
 import AccountScreen from '../screens/AccountScreen';
 
 //Screen names
-const homeName = "Home";
-const messagesName = "Messages";
-const cartName = "Cart";
-const accountName = "Account";
+const homeName = 'Home';
+const messagesName = 'Messages';
+const cartName = 'Cart';
+const accountName = 'Account';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,15 +40,39 @@ function MainContainer() {
                             iconName = focused ? 'person' : 'person-outline';
                         }
 
-                        // You can return any component that you like here!
-                        return <Ionicons name={iconName} size={size} color={color} />;
+                        return (
+                            <View style={{ position: 'relative' }}>
+                                <Ionicons name={iconName} size={size} color={color} />
+
+                                {rn === cartName ?
+                                    <View>
+                                        <View
+                                            style={{
+                                                position: 'absolute',
+                                                right: -3,
+                                                bottom: 22,
+                                                height: 14,
+                                                width: 14,
+                                                backgroundColor: '#E96E6E',
+                                                borderRadius: 7,
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                            }}
+                                        >
+                                            <Text style={{ color: 'white', fontSize: 10 }}>
+                                                4
+                                            </Text>
+                                        </View>
+                                    </View> : null }
+                            </View>
+                        );
                     },
                 })}
                 tabBarOptions={{
                     activeTintColor: 'blue',
-                    inactiveTintColor: 'grey',
+                    inactiveTintColor: 'gray',
                     labelStyle: { paddingBottom: 10, fontSize: 10 },
-                    style: { padding: 10, height: 70}
+                    style: { padding: 10, height: 70},
                 }}>
 
                 <Tab.Screen name={homeName} component={HomeScreen} />
