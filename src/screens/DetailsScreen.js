@@ -1,27 +1,29 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import { fonts } from '../utils/fonts';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import {Constant} from '../utils/constant';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useSelector, useDispatch} from 'react-redux';
-import {fetchUsersBegin, fetchUsersSuccess} from '../context/action/actions';
+import {fetchCartItems} from '../context/action/actions';
 
 const DetailsScreen = () => {
-   // const { addToCartItem } = useContext(CartContext);
     const route = useRoute();
     const navigation = useNavigation();
     const product = route.params.item;
     const [selectedSize, setSelectedSize] = useState('');
-
-   // const count = useSelector(selectCount);
-    const loading = useSelector(state => state.loading);
+    const products = useSelector(state => state.cartItems);
+   // const loading = useSelector(state => state.loading);
     const dispatch = useDispatch();
 
     const handleAddToCart = () => {
-      //  product.size = selectedSize;
-        dispatch(fetchUsersSuccess({}));
+        let isExist = products.findIndex((cart) => cart.id === product.id);
+        if (isExist === -1) {
+            products.push(product);
+            dispatch(fetchCartItems(products));
+        }
+        navigation.navigate('Cart');
     };
     return (
         <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>

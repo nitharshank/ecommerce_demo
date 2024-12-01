@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -11,6 +11,7 @@ import CartScreen from '../screens/CartScreen';
 import AccountScreen from '../screens/AccountScreen';
 import DetailScreen from '../screens/DetailsScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {useSelector} from 'react-redux';
 
 //Screen names
 const homeName = 'HomeScreen';
@@ -41,6 +42,7 @@ const HomeStack = () => {
 };
 
 function MainContainer() {
+    const products = useSelector(state => state.cartItems);
     return (
         <NavigationContainer>
             <Tab.Navigator
@@ -71,18 +73,18 @@ function MainContainer() {
                                         <View
                                             style={{
                                                 position: 'absolute',
-                                                right: -3,
-                                                bottom: 22,
-                                                height: 14,
-                                                width: 14,
+                                                right: -7,
+                                                bottom: 20,
+                                                height: 20,
+                                                width: 20,
                                                 backgroundColor: '#E96E6E',
-                                                borderRadius: 7,
+                                                borderRadius: 10,
                                                 alignItems: 'center',
                                                 justifyContent: 'center',
                                             }}
                                         >
-                                            <Text style={{ color: 'white', fontSize: 10 }}>
-                                                4
+                                            <Text style={{ color: 'white', fontSize: 12 }}>
+                                                {products.length}
                                             </Text>
                                         </View>
                                     </View> : null }

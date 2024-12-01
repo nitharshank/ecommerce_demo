@@ -1,13 +1,18 @@
-import {FETCH_PRODUCTS_BEGIN, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCTS_FAILURE} from '../action/actionTypes';
+import {
+    FETCH_PRODUCTS_BEGIN,
+    FETCH_PRODUCTS_SUCCESS,
+    FETCH_PRODUCTS_FAILURE,
+    FETCH_CART_ITEMS,
+} from '../action/actionTypes';
 
 const initialState = {
     items: [],
+    cartItems: [],
     loading: false,
     error: null,
 };
 
 export default function productReducer(state = initialState, action) {
-    console.log('-------------------action.type: ', action.type);
     switch(action.type) {
         case FETCH_PRODUCTS_BEGIN:
             return {
@@ -20,7 +25,7 @@ export default function productReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                items: action.payload.users,
+                items: action.payload.products,
             };
 
         case FETCH_PRODUCTS_FAILURE:
@@ -29,6 +34,13 @@ export default function productReducer(state = initialState, action) {
                 loading: false,
                 error: action.payload.error,
                 items: [],
+            };
+
+        case FETCH_CART_ITEMS:
+            return {
+                ...state,
+                loading: false,
+                cartItems: action.payload.cartItem,
             };
 
         default:
