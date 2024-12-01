@@ -16,6 +16,7 @@ import {fetchProducts} from '../api/api-service';
 import {fetchUsersSuccess} from '../context/action/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import Colors from '../utils/Colors';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const HomeScreen = () => {
     const navigation = useNavigation();
@@ -60,12 +61,21 @@ const HomeScreen = () => {
         <LinearGradient colors={['#FDF0F3', '#ffcccc']} style={styles.container}>
             <View style={styles.innerContainer}>
                 <View>
-                    <Text style={styles.headingText}>Match Your Style</Text>
+                    <View style={styles.header}>
+                        <Text style={styles.headingText}>Hi, Nitharshan</Text>
+                        <View>
+                            <Image
+                                source={require("../assets/user.png")}
+                                style={styles.profileImage}
+                            />
+                        </View>
+                    </View>
                     <View style={styles.inputContainer}>
-                        <Image
+                        {/*<Image
                             source={require('../assets/search.png')}
                             style={styles.searchIcon}
-                        />
+                        />*/}
+                        <Ionicons name={'search-outline'} size={20} color={Colors.light_grey} />
                         <TextInput placeholder="Search" style={styles.textInput} />
                     </View>
                 </View>
@@ -99,15 +109,25 @@ const styles = StyleSheet.create({
     innerContainer: {
         paddingStart: 10,
     },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
     headingText: {
         marginTop: 20,
         fontSize: 22,
+        width: '80%',
         color: Colors.black,
         marginVertical: 10,
         fontFamily: 'monster_art',
     },
+    profileImage: {
+        height: 40,
+        width: 40,
+    },
     inputContainer: {
         width: Constant.SCREEN_WIDTH - 20,
+        paddingStart: 10,
         paddingEnd: 5,
         marginBottom: 10,
         backgroundColor: Colors.white,
@@ -116,13 +136,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
     },
-    searchIcon: {
-        height: 20,
-        width: 20,
-        marginHorizontal: 12,
-    },
     textInput: {
         fontSize: 14,
+        marginStart: 10,
         fontFamily: 'Poppins-Regular',
     },
 });
