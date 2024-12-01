@@ -29,6 +29,7 @@ const DetailsScreen = () => {
             products.push(cartItem);
             dispatch(fetchCartItems(products));
         }
+        navigation.goBack();
         navigation.navigate('Cart');
     };
     return (
