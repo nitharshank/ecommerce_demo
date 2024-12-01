@@ -5,6 +5,8 @@ import { fonts } from '../utils/fonts';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import {Constant} from '../utils/constant';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useSelector, useDispatch} from 'react-redux';
+import {fetchUsersBegin, fetchUsersSuccess} from '../context/action/actions';
 
 const DetailsScreen = () => {
    // const { addToCartItem } = useContext(CartContext);
@@ -13,8 +15,14 @@ const DetailsScreen = () => {
     const product = route.params.item;
     const [selectedSize, setSelectedSize] = useState('');
 
+   // const count = useSelector(selectCount);
+    const loading = useSelector(state => state.loading);
+    const dispatch = useDispatch();
+
     const handleAddToCart = () => {
-        product.size = selectedSize;
+      //  product.size = selectedSize;
+        console.log('---------------state.counter.value: ', loading);
+        dispatch(fetchUsersSuccess({}));
     };
     return (
         <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
@@ -152,14 +160,14 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontFamily: fonts.monster_art,
         fontWeight: '600',
-        color: '#444444',
+        color: 'red',
     },
     currencyText: {
         fontSize: 14,
-        marginTop: 8,
+        marginTop: 6,
         fontFamily: fonts.monster_art,
         textAlignVertical: 'bottom',
-        color: '#444444',
+        color: 'red',
     },
     descriptionText: {
         marginTop: 10,
