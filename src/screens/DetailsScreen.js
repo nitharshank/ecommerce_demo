@@ -21,7 +21,6 @@ const DetailsScreen = () => {
 
     const handleAddToCart = () => {
       //  product.size = selectedSize;
-        console.log('---------------state.counter.value: ', loading);
         dispatch(fetchUsersSuccess({}));
     };
     return (
