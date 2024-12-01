@@ -5,7 +5,7 @@ export default function AccountScreen({ navigation }) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text
-                style={{ fontSize: 26, fontWeight: 'bold' }}>Home Screen</Text>
+                style={{ fontSize: 26, fontWeight: 'bold' }}>Account Screen</Text>
         </View>
     );
 }

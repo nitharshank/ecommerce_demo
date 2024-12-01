@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -9,26 +9,48 @@ import HomeScreen from '../screens/HomeScreen';
 import MessageScreen from '../screens/MessagesScreen';
 import CartScreen from '../screens/CartScreen';
 import AccountScreen from '../screens/AccountScreen';
+import DetailScreen from '../screens/DetailsScreen';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 //Screen names
-const homeName = 'Home';
+const homeName = 'HomeScreen';
+const homeStack = 'Home';
 const messagesName = 'Messages';
 const cartName = 'Cart';
 const accountName = 'Account';
+const detailScreenName = 'DETAILS_SCREEN';
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+const HomeStack = () => {
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
+            <Stack.Screen name= {homeName} component={HomeScreen} />
+            <Stack.Screen name={detailScreenName} component={DetailScreen}
+                          options={{
+                              headerShown: true,
+                              headerTitle: 'PRODUCT DETAILS',
+                          }} />
+        </Stack.Navigator>
+    );
+};
 
 function MainContainer() {
     return (
         <NavigationContainer>
             <Tab.Navigator
-                initialRouteName={homeName}
+                initialRouteName={homeStack}
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
                         let iconName;
                         let rn = route.name;
 
-                        if (rn === homeName) {
+                        if (rn === homeStack) {
                             iconName = focused ? 'home' : 'home-outline';
                         } else if (rn === messagesName) {
                             iconName = focused ? 'mail' : 'mail-outline';
@@ -67,6 +89,7 @@ function MainContainer() {
                             </View>
                         );
                     },
+                    headerShown: false,
                 })}
                 tabBarOptions={{
                     activeTintColor: 'blue',
@@ -75,7 +98,7 @@ function MainContainer() {
                     style: { padding: 10, height: 70},
                 }}>
 
-                <Tab.Screen name={homeName} component={HomeScreen} />
+                <Tab.Screen  name={homeStack} component={HomeStack} />
                 <Tab.Screen name={messagesName} component={MessageScreen} />
                 <Tab.Screen name={cartName} component={CartScreen} />
                 <Tab.Screen name={accountName} component={AccountScreen} />
