@@ -6,6 +6,7 @@ import {
   View,
 } from 'react-native';
 import React, { useState } from 'react';
+import Colors from '../utils/Colors';
 
 const Tags = () => {
   const [selected, setSelected] = useState('Trending Now');
@@ -46,12 +47,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     marginEnd: 10,
-    backgroundColor: '#DFDCDC',
-    color: '#938F8F',
+    backgroundColor: Colors.light_grey_200,
+    color:  Colors.light_grey,
   },
   isSelected: {
-    backgroundColor: '#E96E6E',
-    color: '#FFFFFF',
+    backgroundColor: Colors.red,
+    color: Colors.white,
   },
   container: {
     marginVertical: 4,

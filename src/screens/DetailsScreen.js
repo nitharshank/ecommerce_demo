@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import { fonts } from '../utils/fonts';
@@ -7,12 +7,13 @@ import {Constant} from '../utils/constant';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchCartItems} from '../context/action/actions';
+import Colors from '../utils/Colors';
 
 const DetailsScreen = () => {
     const route = useRoute();
     const navigation = useNavigation();
     const product = route.params.item;
-    const [selectedSize, setSelectedSize] = useState('');
+    const [selectedSize, setSelectedSize] = useState(product.sizes[1]);
     const products = useSelector(state => state.cartItems);
    // const loading = useSelector(state => state.loading);
     const dispatch = useDispatch();
@@ -20,16 +21,19 @@ const DetailsScreen = () => {
     const handleAddToCart = () => {
         let isExist = products.findIndex((cart) => cart.id === product.id);
         if (isExist === -1) {
-            products.push(product);
+            const cartItem = {
+                ...product,
+                size: selectedSize,
+            };
+           // product.size = selectedSize;
+            products.push(cartItem);
             dispatch(fetchCartItems(products));
         }
         navigation.navigate('Cart');
     };
     return (
+        <ScrollView>
         <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
-            <View style={styles.header}>
-               {/* <Header />*/}
-            </View>
             <View style={styles.imageContainer}>
                 <Image source={{ uri: product.mainImage }} style={styles.coverImage} />
             </View>
@@ -38,7 +42,7 @@ const DetailsScreen = () => {
             </View>
             <View style={styles.likeContainer}>
                 <Ionicons name = {'heart'} size={15} color={'red'}/>
-                <Text style={styles.likeText}> 5.8K</Text>
+                <Text style={styles.likeText}> 5.8K+</Text>
             </View>
             <View style={styles.brandContainer}>
                 <Text style={styles.brandText}>{product.brandName}</Text>
@@ -58,7 +62,6 @@ const DetailsScreen = () => {
                 </View>
                 <Text style={styles.descriptionText} numberOfLines={5}>{product.description}</Text>
                 <Text style={[styles.fontText, styles.sizeText]}>Shoe Size</Text>
-                {/* size container */}
                 <View style={styles.sizeContainer}>
                     {product.sizes.map((size) => (
                         <TouchableOpacity
@@ -81,6 +84,7 @@ const DetailsScreen = () => {
                 </View>
             </View>
         </LinearGradient>
+        </ScrollView>
     );
 };
 
@@ -90,11 +94,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    header: {
-     //   padding: 15,
-    },
     imageContainer: {
-        height: Constant.SCREEN_HEIGHT/3,
+        height: Constant.SCREEN_HEIGHT / 3,
         width: '100%',
     },
     likeContainer: {
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         padding: 4,
         paddingHorizontal: 10,
-        backgroundColor: 'grey',
+        backgroundColor: Colors.light_grey_200,
         borderRadius: 20,
         right: 15,
         top: 15,
@@ -144,18 +145,18 @@ const styles = StyleSheet.create({
     likeText: {
         fontSize: 14,
         fontFamily: fonts.monster_art,
-        color: '#444444',
+        color: Colors.grey,
     },
     brandText: {
         fontSize: 18,
         fontFamily: fonts.monster_art,
-        color: '#444444',
+        color: Colors.grey,
     },
     fontText: {
         fontSize: 18,
         fontFamily: fonts.monster_art,
         fontWeight: '500',
-        color: '#444444',
+        color: Colors.grey,
     },
     amountText: {
         fontSize: 22,
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         fontSize: 14,
         fontFamily: fonts.monster_art,
-        color: '#444444',
+        color: Colors.grey,
     },
     sizeText: {
         marginTop: 20,
@@ -185,16 +186,15 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     sizeValueContainer: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: Colors.white,
         height: 40,
         width: 60,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
         marginEnd: 12,
-        borderColor: 'grey',
+        borderColor: Colors.grey,
         borderWidth: 1,
-       // marginHorizontal: 5,
     },
     sizeValueText: {
         fontSize: 17,
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
     },
     selectedText: {
-        color: '#E55B5B',
+        color: Colors.red,
     },
     colorContainer: {
         flexDirection: 'row',
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
         width: 20,
         padding: 1,
         marginHorizontal: 10,
-        backgroundColor: 'black',
+        backgroundColor: Colors.black,
         borderRadius: 10,
     },
     colorCircle: {
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     },
     button: {
         flexDirection: 'row',
-        backgroundColor: '#E96E6E',
+        backgroundColor: Colors.red,
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 18,
-        color: '#FFFFFF',
+        color: Colors.white,
         fontFamily: fonts.monster_art,
     },
 });

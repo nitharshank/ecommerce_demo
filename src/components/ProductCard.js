@@ -3,6 +3,7 @@ import React from 'react';
 import { fonts } from '../utils/fonts';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Constant} from '../utils/constant';
+import Colors from '../utils/Colors';
 
 const ProductCard = ({ item, handleProductClick, toggleFavorite }) => {
   return (
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
     fontWeight: '700',
     textAlign: 'center',
-    color: '#444444',
+    color: Colors.grey,
   },
   price: {
     fontSize: 11,
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
   likeContainer: {
     position: 'absolute',
     padding: 2,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.white,
     borderRadius: 20,
     right: 20,
     top: 8,

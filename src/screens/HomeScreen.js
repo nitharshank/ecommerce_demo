@@ -15,6 +15,7 @@ import Tags from '../components/Tags';
 import {fetchProducts} from '../api/api-service';
 import {fetchUsersSuccess} from '../context/action/actions';
 import {useDispatch, useSelector} from 'react-redux';
+import Colors from '../utils/Colors';
 
 const HomeScreen = () => {
     const navigation = useNavigation();
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     headingText: {
         marginTop: 20,
         fontSize: 22,
-        color: '#000000',
+        color: Colors.black,
         marginVertical: 10,
         fontFamily: 'monster_art',
     },
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
         width: Constant.SCREEN_WIDTH - 20,
         paddingEnd: 5,
         marginBottom: 10,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: Colors.white,
         height: 40,
         borderRadius: 12,
         alignItems: 'center',
