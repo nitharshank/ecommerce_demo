@@ -25,7 +25,6 @@ const DetailsScreen = () => {
                 ...product,
                 size: selectedSize,
             };
-           // product.size = selectedSize;
             products.push(cartItem);
             dispatch(fetchCartItems(products));
         }
@@ -62,7 +61,8 @@ const DetailsScreen = () => {
                     </View>
                 </View>
                 <Text style={styles.descriptionText} numberOfLines={5}>{product.description}</Text>
-                <Text style={[styles.fontText, styles.sizeText]}>Shoe Size</Text>
+                {product.sizes > 0 ?
+                <Text style={[styles.fontText, styles.sizeText]}>Shoe Size</Text> : null}
                 <View style={styles.sizeContainer}>
                     {product.sizes.map((size) => (
                         <TouchableOpacity
@@ -77,12 +77,13 @@ const DetailsScreen = () => {
                         </TouchableOpacity>
                     ))}
                 </View>
+                {product.stockStatus === 'IN STOCK' ?
                 <View>
                     <TouchableOpacity style={styles.button} onPress={handleAddToCart}>
                         <Ionicons name={'cart'} size={25} color={'white'} />
                         <Text style={styles.buttonText}>  Add to Cart</Text>
                     </TouchableOpacity>
-                </View>
+                </View> : null }
             </View>
         </LinearGradient>
         </ScrollView>

@@ -19,7 +19,15 @@ import {useFocusEffect} from '@react-navigation/native';
 const CartScreen = () => {
     const cartItems = useSelector(state => state.cartItems);
     const dispatch = useDispatch();
-    const totalAmount = cartItems.reduce((sum, product) => sum + parseFloat(product.price.amount), 0);
+    const [totalAmount, setTotalAmount] = useState(0);
+
+
+    useEffect(() => {
+        if (cartItems.length !== 0) {
+           const amount = cartItems.reduce((sum, product) => sum + parseFloat(product.price.amount), 0);
+           setTotalAmount(amount);
+        }
+    }, [cartItems]);
 
     const handleDeleteItem = async (id) => {
         const updatedData = cartItems.filter(item => item.id !== id);
@@ -84,7 +92,6 @@ const styles = StyleSheet.create({
     },
     totalContainer: {
         height: 300,
-        backgroundColor: Colors.light_red,
     },
     bottomContentContainer: {
         marginHorizontal: 10,
