@@ -7,6 +7,7 @@ const initialState = {
 };
 
 export default function productReducer(state = initialState, action) {
+    console.log('-------------------action.type: ', action.type);
     switch(action.type) {
         case FETCH_PRODUCTS_BEGIN:
             return {

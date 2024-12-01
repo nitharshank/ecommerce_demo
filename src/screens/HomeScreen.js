@@ -6,33 +6,53 @@ import {
     TextInput,
     View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, {useEffect} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import ProductCard from '../components/ProductCard';
-import data_aws from '../data/data_aws.json';
 import { useNavigation } from '@react-navigation/native';
 import {Constant} from '../utils/constant';
 import Tags from '../components/Tags';
+import {fetchProducts} from '../api/api-service';
+import {fetchUsersSuccess} from '../context/action/actions';
+import {useDispatch, useSelector} from 'react-redux';
 
 const HomeScreen = () => {
-    const [products, setProducts] = useState(data_aws.data);
     const navigation = useNavigation();
+    const dispatch = useDispatch();
+    const products = useSelector(state => state.items);
+
+    useEffect(() => {
+        const fetchProductList = async () => {
+           // dispatch(fetchUsersBegin());
+            fetchProducts(dataSuccess, dataError);
+        };
+
+        const dataSuccess = (response) => {
+           // setProducts(response);
+            dispatch(fetchUsersSuccess(response));
+        };
+
+        const dataError = (error) => {
+            // TODO show error
+        };
+
+        fetchProductList();
+    }, [dispatch]);
+
     const handleProductDetails = (item) => {
         navigation.navigate('DETAILS_SCREEN', { item });
     };
     const toggleFavorite = (item) => {
-        setProducts(
-            products.map((prod) => {
-                if (prod.id === item.id) {
-                    console.log('prod: ', prod);
-                    return {
-                        ...prod,
-                        isFavorite: !prod.isFavorite,
-                    };
-                }
-                return prod;
-            })
-        );
+        dispatch(fetchUsersSuccess( products.map((prod) => {
+            if (prod.id === item.id) {
+                console.log('prod: ', prod);
+                return {
+                    ...prod,
+                    isFavorite: !prod.isFavorite,
+                };
+            }
+            return prod;
+        })));
     };
 
     return (
