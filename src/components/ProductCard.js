@@ -1,8 +1,8 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import { fonts } from '../utils/fonts';
+import { fonts } from '../utils/Fonts';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {Constant} from '../utils/constant';
+import {Constant} from '../utils/Constant';
 import Colors from '../utils/Colors';
 
 const ProductCard = ({ item, handleProductClick, toggleFavorite }) => {

@@ -1,6 +1,6 @@
 export const Screens = {
-  HomeScreen: 'HomeScreen',
-  ProductDetailScreen: 'ProductDetailScreen',
+  HomeScreen: 'Home',
+  ProductDetailScreen: 'DetailScreen',
   CartScreen: 'CartScreen',
   MessagesScreen: 'MessagesScreen',
   AccountScreen: 'AccountScreen',

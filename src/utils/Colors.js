@@ -8,6 +8,7 @@ export const COLORS = {
     grey: '#444444',
     light_grey: '#938F8F',
     light_grey_200: '#DFDCDC',
+    light_red_100: '#E96E6E',
     card_shadow_color_android: 'rgba(0, 0, 0, 0.2)',
     card_shadow_color_ios: 'rgba(0, 0, 0, 0.04)',
 };

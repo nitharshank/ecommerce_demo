@@ -8,13 +8,12 @@ import {
 import React, {useEffect, useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import CartCard from '../components/CartCard';
-import { fonts } from '../utils/fonts';
+import { fonts } from '../utils/Fonts';
 import {useDispatch, useSelector} from 'react-redux';
 import Colors from '../utils/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {Constant} from '../utils/constant';
+import {Constant} from '../utils/Constant';
 import {fetchCartItems} from '../context/action/actions';
-import {useFocusEffect} from '@react-navigation/native';
 
 const CartScreen = () => {
     const cartItems = useSelector(state => state.cartItems);
@@ -82,7 +81,6 @@ export default CartScreen;
 
 const styles = StyleSheet.create({
     container: {
-      //  flex: 1,
         marginTop: 40,
         flexDirection: 'column',
         marginHorizontal: 10,
@@ -126,7 +124,7 @@ const styles = StyleSheet.create({
     },
     button: {
         flexDirection: 'row',
-        backgroundColor: '#E96E6E',
+        backgroundColor: Colors.light_red_100,
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
@@ -135,7 +133,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 20,
-        color: '#FFFFFF',
+        color: Colors.white,
         fontFamily: fonts.monster_art,
     },
 });

@@ -1,9 +1,9 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import { fonts } from '../utils/fonts';
+import { fonts } from '../utils/Fonts';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import {Constant} from '../utils/constant';
+import {Constant} from '../utils/Constant';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchCartItems} from '../context/action/actions';

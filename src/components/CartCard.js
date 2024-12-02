@@ -1,7 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import { fonts } from '../utils/fonts';
-import {Constant} from '../utils/constant';
+import { fonts } from '../utils/Fonts';
 import Colors from '../utils/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: '500',
         fontFamily: fonts.monster_art,
-        color: '#444444',
+        color: Colors.grey,
         marginTop: 10,
         marginStart: 10,
     },

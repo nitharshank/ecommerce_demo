@@ -10,10 +10,10 @@ import React, {useEffect} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import ProductCard from '../components/ProductCard';
 import { useNavigation } from '@react-navigation/native';
-import {Constant} from '../utils/constant';
+import {Constant} from '../utils/Constant';
 import Tags from '../components/Tags';
 import {fetchProducts} from '../api/api-service';
-import {fetchUsersSuccess} from '../context/action/actions';
+import {fetchProductSuccess} from '../context/action/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import Colors from '../utils/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -25,13 +25,11 @@ const HomeScreen = () => {
 
     useEffect(() => {
         const fetchProductList = async () => {
-           // dispatch(fetchUsersBegin());
             fetchProducts(dataSuccess, dataError);
         };
 
         const dataSuccess = (response) => {
-           // setProducts(response);
-            dispatch(fetchUsersSuccess(response));
+            dispatch(fetchProductSuccess(response));
         };
 
         const dataError = (error) => {
@@ -45,7 +43,7 @@ const HomeScreen = () => {
         navigation.navigate('DETAILS_SCREEN', { item });
     };
     const toggleFavorite = (item) => {
-        dispatch(fetchUsersSuccess( products.map((prod) => {
+        dispatch(fetchProductSuccess( products.map((prod) => {
             if (prod.id === item.id) {
                 console.log('prod: ', prod);
                 return {
@@ -104,7 +102,6 @@ const styles = StyleSheet.create({
     container: {
         paddingTop: 30,
         flex: 1,
-      //  alignItems: 'center',
     },
     innerContainer: {
         paddingStart: 10,

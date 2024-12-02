@@ -4,12 +4,12 @@ export const fetchProductsBegin = () => ({
     type: FETCH_PRODUCTS_BEGIN,
 });
 
-export const fetchUsersSuccess = products => ({
+export const fetchProductSuccess = products => ({
     type: FETCH_PRODUCTS_SUCCESS,
     payload: { products },
 });
 
-export const fetchUsersFailure = error => ({
+export const fetchProductFailure = error => ({
     type: FETCH_PRODUCTS_FAILURE,
     payload: { error },
 });
